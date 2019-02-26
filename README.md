@@ -5,3 +5,5 @@ according to your template. The author of a question can check the answers to hi
 or wait until several other users check each answer. If the estimates for the answer are very different, 
 the system warns about this and recommends the author to check the question himself and, if necessary, 
 penalize the user who poorly checked the answer.
+
+You can register yourself or log in to the site using existing accounts - from 1@gmail.com to 20@gmail.com, the passwords are always the same - 111111.
