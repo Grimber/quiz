@@ -1,0 +1,81 @@
+﻿@using Quiz.Models
+@model IEnumerable<TableViewModel>
+@{
+    ViewBag.Title = "MyQuestions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>My Questions</h2>
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <hr />
+    @foreach (TableViewModel question in Model)
+    {
+        <h4>
+            @Html.ActionLink(HttpUtility.HtmlDecode("&times;"), "DelMyQuestion", "Home", new { id = question.IdForName},
+                    new { @class = "viewDialog", data_dialog_title = "Delete question" })
+            @question.Name
+        </h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    @foreach (var item in question.Headline)
+                    {
+                        <th scope="col"><p class="text-center">@item</p></th>;
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var dr in question.DataRows)
+                {
+                <tr>
+                    @for (int i = 0; i < dr.Row.Count; i++)
+                    {
+                        if (i < dr.Row.Count - 1)
+                        {
+                            <td><p class="text-center">@dr.Row[i]</p></td>
+                        }
+                        else
+                        {
+                            if (dr.Row[i] == "Show answer")
+                            {
+                                <td><p class="text-center"><a href="@Url.Action("CheckAnswerByAuthor","Home", new {questionAnswerId = dr.Id })">@dr.Row[i] </a></p></td>
+                            }
+                            else
+                            {
+                                <td><p class="text-center">@dr.Row[i]</p></td>
+                            }
+
+                        }
+                    }
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+@section Scripts {
+    <script src='@Url.Content("~/Scripts/jquery-1.12.4.min.js")' type="text/javascript"></script>
+    <script src='@Url.Content("~/Scripts/jquery-ui-1.12.1.min.js")' type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $.ajaxSetup({ cache: false });
+
+            $(".viewDialog").on("click", function (e) {
+                e.preventDefault();
+
+                $("<div></div>")
+                    .addClass("dialog")
+                    .appendTo("body")
+                    .dialog({
+                        title: $(this).attr("data-dialog-title"),
+                        close: function () { $(this).remove() },
+                        modal: true
+                    })
+                    .load(this.href);
+            });
+        });
+    </script>
+}

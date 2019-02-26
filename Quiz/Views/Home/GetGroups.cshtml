@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Quiz.Models.Group>
+
+<select multiple class="form-control" id="group" name="Groups"  >
+
+    @foreach (var item in Model)
+    {
+        <option value="@item.Id">@item.Name</option>
+    }
+</select>

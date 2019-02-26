@@ -1,0 +1,19 @@
+﻿@model Quiz.Models.AddGroupViewModel
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(m => m.UniversityId, new { @class = "col-md-2 control-label" })
+                @Html.DropDownListFor(m => m.UniversityId, Model.ListOfUniversities as SelectList,
+                       new { id = "university", @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.GroupName, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(m => m.GroupName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-default" value="Add" />
+        </div>
+    }
+</div>

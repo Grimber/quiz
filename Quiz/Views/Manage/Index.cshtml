@@ -1,0 +1,51 @@
+﻿@model Quiz.Models.IndexViewModel
+@{
+    ViewBag.Title = "Profile";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Surname:</dt>
+        <dd>
+            @ViewBag.UserProfile.Surname
+        </dd>
+        <dt>Name:</dt>
+        <dd>
+            @ViewBag.UserProfile.Name
+        </dd>
+        <dt>University:</dt>
+        <dd>
+            @ViewBag.UserProfile.Group.University.Name
+        </dd>
+        <dt>Group:</dt>
+        <dd>
+            @ViewBag.UserProfile.Group.Name
+        </dd>
+        <dt>Rating:</dt>
+        <dd>
+            @ViewBag.UserProfile.Rating
+        </dd>
+        <dt>Email:</dt>
+        <dd>
+            @ViewBag.User.Email
+        </dd>
+        <dt>Password:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Change Password", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Set Password", "SetPassword")
+            }
+            ]
+        </dd>
+    </dl>
+</div>

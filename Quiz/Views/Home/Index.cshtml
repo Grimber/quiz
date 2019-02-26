@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@if (TempData["Message"] != null)
+{
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <p>@TempData["Message"]</p>
+        </div>
+}
+
+<div class="jumbotron">
+    <h1>Create a new question</h1>
+    <p class="lead">Create your own questions to keep up to date with the current level of user knowledge.</p>
+    <p><a href="/Home/CreateQuestion" class="btn btn-primary btn-lg">Go &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>My question</h2>
+        <p>
+            Here you can look at all questions you have created, answers and marks.
+        </p>
+        <p><a class="btn btn-default" href="/Home/MyQuestions">Go &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Answer the questions</h2>
+        <p>Answer the questions suggested for you to effectively control the level of your knowledge.</p>
+        <p><a class="btn btn-default" href="/Home/QuestionsForMe">Go &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Check other people's answers</h2>
+        <p>By reviewing someone else's answers, you better memorize the material and help the community operate on a royalty-free basis.</p>
+        <p><a class="btn btn-default" href="/Home/MyChecks">Go &raquo;</a></p>
+    </div>
+</div>

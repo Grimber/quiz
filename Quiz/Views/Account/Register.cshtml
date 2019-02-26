@@ -1,0 +1,83 @@
+﻿@model Quiz.Models.RegisterViewModel
+@{
+    /**/
+
+    ViewBag.Title = "Register";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Create a new account.</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Surname, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.University, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.University, ViewBag.Universities as SelectList,
+                   new { id = "university", @class = "form-control" })
+            <p>
+                If your university is not listed, please @Html.ActionLink("add it here.", "AddUniversity", "Home", new { },
+new { @class = "viewDialog", data_dialog_title = "Add your university" })
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Group, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.Group, ViewBag.Groups as SelectList,
+                  new { id = "group", @class = "form-control" })
+            <p>
+                If your group is not listed, please
+                @Html.ActionLink("add it here.", "AddGroup", "Home", new { },
+                    new { @class = "viewDialog", data_dialog_title = "Add your group" })
+            </p>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Register" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/jquery-ui-1.12.1.min.js")
+    @Scripts.Render("~/Scripts/quiz.js")
+    @Scripts.Render("~/bundles/jqueryval")
+}

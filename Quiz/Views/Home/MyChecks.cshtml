@@ -1,0 +1,43 @@
+﻿@using Quiz.Models
+@model TableViewModel
+@{
+    ViewBag.Title = "MyChecks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <hr />
+    <h4>@Model.Name</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                @foreach (var item in Model.Headline)
+                {
+                    <th scope="col">@item</th>;
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dr in Model.DataRows)
+            {
+                <tr>
+                    @foreach (var r in dr.Row)
+                    {
+                        if (r.Equals(dr.Row.Last()))
+                        {
+                            <td><a href="@Url.Action("CheckAnswer","Home", new {questionAnswerId = dr.Id })">@r </a></td>
+                        }
+                        else
+                        {
+                            <td>@r</td>
+                        }
+
+                    }
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
